@@ -8,8 +8,7 @@
   "dependencies": {
     "@trpc/client": "11.5.0",
     "@trpc/server": "11.5.0",
-    "@vibe/logger": "workspace:*",
-    "@vibe/vibe-env": "workspace:*",
+    "pino": "^9.5.0",
     "tslib": "^2.8.1"
   },
   "devDependencies": {

@@ -9,7 +9,7 @@ import {
   type inferRouterContext,
 } from '@trpc/server';
 import { isObservable, type Unsubscribable } from '@trpc/server/observable';
-import type { Logger } from '@vibe/logger';
+import type { Logger } from 'pino';
 
 export interface TRPCUnixServerOptions<TRouter extends AnyRouter = AnyRouter> {
   router: TRouter;
