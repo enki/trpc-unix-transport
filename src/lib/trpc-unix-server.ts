@@ -1,5 +1,5 @@
 import { createServer, Socket, type Server as NetServer } from 'net';
-import { join } from 'path';
+import { dirname } from 'path';
 import { promises as fs } from 'fs';
 import { LengthPrefixedTransport } from './length-prefixed-transport.js';
 import {
@@ -8,7 +8,6 @@ import {
   type AnyRouter,
   type inferRouterContext,
 } from '@trpc/server';
-import { getBaseVibeDir } from '@vibe/vibe-env';
 import { isObservable, type Unsubscribable } from '@trpc/server/observable';
 import type { Logger } from '@vibe/logger';
 
@@ -17,7 +16,7 @@ export interface TRPCUnixServerOptions<TRouter extends AnyRouter = AnyRouter> {
   createContext: () =>
     | Promise<inferRouterContext<TRouter>>
     | inferRouterContext<TRouter>;
-  environment: string;
+  socketPath: string;
 }
 
 // Simple error conversion utility
@@ -73,17 +72,11 @@ export class TRPCUnixServer<TRouter extends AnyRouter = AnyRouter> {
     // Logger MUST be provided via DI from UnixTransportStrategy
     this.logger = logger;
 
-    // Socket path: {baseVibeDir}/{environment}/sockets/api-server.sock
-    this.socketPath = join(
-      getBaseVibeDir(),
-      this.options.environment,
-      'sockets',
-      'api-server.sock'
-    );
+    // Socket path provided by caller
+    this.socketPath = this.options.socketPath;
 
     this.logger.info({
-      socketPath: this.socketPath,
-      environment: this.options.environment
+      socketPath: this.socketPath
     }, 'TRPCUnixServer initialized');
   }
 
@@ -202,7 +195,7 @@ export class TRPCUnixServer<TRouter extends AnyRouter = AnyRouter> {
   private async preflightChecks(): Promise<void> {
     this.logger.debug('Phase 1: Pre-flight checks');
 
-    const socketDir = join(getBaseVibeDir(), this.options.environment, 'sockets');
+    const socketDir = dirname(this.socketPath);
 
     // Check if directory exists and is writable
     try {
@@ -267,7 +260,7 @@ export class TRPCUnixServer<TRouter extends AnyRouter = AnyRouter> {
   private async createSocket(): Promise<void> {
     this.logger.debug('Phase 2: Socket creation');
 
-    const socketDir = join(getBaseVibeDir(), this.options.environment, 'sockets');
+    const socketDir = dirname(this.socketPath);
 
     // Step 1: Ensure directory exists (with timeout)
     this.logger.debug({ socketDir }, 'Creating socket directory');
