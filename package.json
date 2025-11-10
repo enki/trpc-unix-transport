@@ -1,10 +1,22 @@
 {
-  "name": "@vibe/trpc-unix-transport",
-  "version": "0.0.1",
-  "private": true,
+  "name": "@enki/trpc-unix-transport",
+  "version": "0.1.0",
   "type": "module",
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
+  "description": "tRPC transport layer for Unix domain sockets",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enki/trpc-unix-transport.git"
+  },
+  "keywords": [
+    "trpc",
+    "unix-socket",
+    "ipc",
+    "transport"
+  ],
+  "author": "Vibe Team",
+  "license": "MIT",
   "dependencies": {
     "@trpc/client": "11.5.0",
     "@trpc/server": "11.5.0",
