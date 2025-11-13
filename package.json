@@ -17,13 +17,17 @@
   ],
   "author": "Vibe Team",
   "license": "MIT",
+  "peerDependencies": {
+    "@trpc/client": "^11.0.0",
+    "@trpc/server": "^11.0.0"
+  },
   "dependencies": {
-    "@trpc/client": "11.5.0",
-    "@trpc/server": "11.5.0",
     "pino": "^9.5.0",
     "tslib": "^2.8.1"
   },
   "devDependencies": {
+    "@trpc/client": "11.7.1",
+    "@trpc/server": "11.7.1",
     "@types/node": "24.5.2"
   },
   "exports": {
