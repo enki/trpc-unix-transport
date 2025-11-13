@@ -17,6 +17,12 @@
   ],
   "author": "Vibe Team",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "clean": "find src -name '*.js' -o -name '*.js.map' -o -name '*.d.ts.map' | xargs rm -f",
+    "prepare": "npm run build"
+  },
   "peerDependencies": {
     "@trpc/client": "^11.0.0",
     "@trpc/server": "^11.0.0"
@@ -28,7 +34,8 @@
   "devDependencies": {
     "@trpc/client": "11.7.1",
     "@trpc/server": "11.7.1",
-    "@types/node": "24.5.2"
+    "@types/node": "24.5.2",
+    "typescript": "^5.9.3"
   },
   "exports": {
     ".": "./src/index.js"

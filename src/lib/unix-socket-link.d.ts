@@ -12,3 +12,4 @@ export interface UnixSocketLinkOptions {
  * like HTTP, avoiding connection management complexity
  */
 export declare function unixSocketLink<TRouter extends AnyRouter>(opts: UnixSocketLinkOptions): TRPCLink<TRouter>;
+//# sourceMappingURL=unix-socket-link.d.ts.map

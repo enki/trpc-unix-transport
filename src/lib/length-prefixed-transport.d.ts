@@ -37,3 +37,4 @@ export declare class LengthPrefixedTransport extends EventEmitter {
  * Create a transport from an existing socket
  */
 export declare function createTransport(socket: Socket): LengthPrefixedTransport;
+//# sourceMappingURL=length-prefixed-transport.d.ts.map

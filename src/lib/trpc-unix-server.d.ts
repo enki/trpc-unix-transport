@@ -1,9 +1,9 @@
 import { type AnyRouter, type inferRouterContext } from '@trpc/server';
-import type { Logger } from '@vibe/logger';
+import type { Logger } from 'pino';
 export interface TRPCUnixServerOptions<TRouter extends AnyRouter = AnyRouter> {
     router: TRouter;
     createContext: () => Promise<inferRouterContext<TRouter>> | inferRouterContext<TRouter>;
-    environment: string;
+    socketPath: string;
 }
 export interface TRPCResponse {
     id: string | number;
@@ -73,3 +73,4 @@ export declare class TRPCUnixServer<TRouter extends AnyRouter = AnyRouter> {
     private handleTRPCRequest;
 }
 export declare function createTRPCUnixServer<TRouter extends AnyRouter = AnyRouter>(options: TRPCUnixServerOptions<TRouter>, logger: Logger): TRPCUnixServer<TRouter>;
+//# sourceMappingURL=trpc-unix-server.d.ts.map
